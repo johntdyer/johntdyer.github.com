@@ -1,7 +1,7 @@
 ---
 layout: page
-title: About
-permalink: /about/
+title: Resume
+permalink: /resume/
 customjs:
   - ../assets/resources/pdf/pdf.js
 
@@ -14,6 +14,18 @@ customjs:
   //
   var url = '../assets/resume.pdf';
 
+  //
+  // Disable workers to avoid yet another cross-origin issue (workers need
+  // the URL of the script to be loaded, and dynamically loading a cross-origin
+  // script does not work).
+  //
+  // PDFJS.disableWorker = true;
+
+  //
+  // In cases when the pdf.worker.js is located at the different folder than the
+  // pdf.js's one, or the pdf.js is executed via eval(), the workerSrc property
+  // shall be specified.
+  //
    PDFJS.workerSrc = '../assets/resources/pdf/pdf.worker.js';
 
   //
@@ -51,5 +63,6 @@ customjs:
 
 <pre id="code"></pre>
 <script>
-  document.getElementById('code').textContent = document.getElementById('script').text;
+  document.getElementById('code').textContent =
+      document.getElementById('script').text;
 </script>
