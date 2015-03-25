@@ -22,4 +22,11 @@ Once you have it installed and configured the following will give you a list of 
  aws ec2 describe-instances | jq -r '.Reservations[].Instances[].Tags[] | select ( .Key | contains("Name") ) | .Value'
 {% endhighlight %}
 
+
+If you wanted to drill down a little further you could add another qualifier and show only instances with a state of running.
+
+{% highlight bash %}
+aws ec2 describe-instances | jq -r '.Reservations[].Instances[]| select ( .State.Name | contains("running")) | .Tags[] | select ( .Key | contains("Name") ) | .Value'
+{% endhighlight %}
+
 Hope thats helpful !
