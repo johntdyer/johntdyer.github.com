@@ -1,0 +1,82 @@
+==================================================================
+https://keybase.io/johntdyer
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://johntdyer.com
+  * I am johntdyer (https://keybase.io/johntdyer) on keybase.
+  * I have a public key with fingerprint A38F E03F 4C69 C523 6A00  9A12 7552 1842 8EB2 B8C3
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "client": {
+            "name": "keybase.io node.js client",
+            "version": "0.7.7"
+        },
+        "key": {
+            "fingerprint": "a38fe03f4c69c5236a009a12755218428eb2b8c3",
+            "host": "keybase.io",
+            "key_id": "755218428EB2B8C3",
+            "uid": "827dcc4d407f4a11d587aac5a85d6600",
+            "username": "johntdyer"
+        },
+        "merkle_root": {
+            "ctime": 1429901019,
+            "hash": "59f1ac00c459c708dfc15974d69ce1818eaff24aea02b00438de4954fc1630427c6c706b7c4b0817aad17cd9b9d08c06f1597436361456dc3fe73fdd42808dea",
+            "seqno": 210256
+        },
+        "service": {
+            "hostname": "johntdyer.com",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1429901166,
+    "expire_in": 157680000,
+    "prev": "9a885e878d8be05e447ccbda0cd75c66ee272280c1e94f5d46225fa21c58818f",
+    "seqno": 25,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Comment: GPGTools - http://gpgtools.org
+
+owFdkntQVFUcx3lo6prjloRGjmtXLCaX9b4fzKJCkyXayCNBC93OPefc5cqyd7m7
+YJuQs8o0ZSWboE6Jkw0ZhDIGaQX5SFEqZaV0UMMRqaBUxLGHofagexlrtPPXPfd8
+ft/f9/s7JzwhNsoSXZI9JX1D86dt0ccvyVFLUiq9qwlZQ0EiZTUBPSr2BswvLyjC
+RApRiIMy8GOHqk33agg7Vvqn32bsRCnW/armNSjSITgEotxu4maxonrdWPfpqqlF
+AEZUMMkoLOQlyNEMD0hSAhQtcBxNiSwtYpmWRcgYkgWaP3BXV2JE06Ui4+9//BPp
+dLr4uMmXjByItIAgZBFLCgoLKApxogAA5IDIIZ4nSRP0Y/12pJVagTeAglg3DRdh
+vdCDXbqmjaSGAdVkKJaWJJIiKcmwBPwFRhUnKRSAJAlZToICKSIFUpwksMjIhCmR
+EjFQFJoFGJC0TJIsIyLMShxrYDxDsrQAeaOMlwXIyqRIGf4QJUAkyRIiRUjyyoga
+wzM8xXI8goyCBUZByIhrNMPAyODHxV6NSKEpkub4cnOvl6oQm77Nuf0/ngNqRUaV
+T9cCGtQ8xlFBIOBLMVMHgj4TXYU/lF23VVyy6kXGtd15r5SB3j0RiuftBH7Bp+rY
+pZoEJ/AiaSyzDy41NCUgihwWBRGJMiY5zLIChDICJEQCB3keY1qgjUyQwhKrcIjl
+aZpTAE1BTjSmqNyRkzOMAreh6VfdXhAo0TFR/mrM1FFR0Zaoe0bHmC83yjLO+u9z
+zjkz8e/kPrt1Rv9Nx961z733m62hxrl/5i8ZbBF+jSqOf/QH3Zb3V3DB5g8c+aEd
+yTnuB2vau379qnxUmAr0Dl+d/EnjuKMdVzZOaMc5nLOvp67oWuz1jMsn27aV4F7u
+qmVZdtf1uAOrzx/ODi9OKtjZUhM5NMai1tcdDEqddW0zfe/aNsV6zj7W+NK6fWBX
+1Ym45Ux+q/+LsQmJT++6OCbuQmTvDvf7TWXPz+pQqkLbakF/7Ivn38ra2lMflV65
+UjhXvP7rd5yWA3udX55yNrr2EY3fLP78s4eXFeYM583+nonEJ320duO6G/Ho9JNP
+JdX2gfqwLXvhwJHl1guVf7aeXNrWrC79fd54d7e7Gq1vGA7t29R79OaqwbZjk512
+PbInd0xleGrrt64EH/1H/zMrLs2f8MjboTUPTG669+W4sdtzI9szKyJXwyn27R/P
+y9RDl2HVcT0prSJvbl/+4Js3Hoqr6xw/I7F3SqHHutmGzg35Ou9PdSTIiUeiX7Fu
+TRP3N4ye1KMeKvOcnvZj3JqOSQPdTae/y4s91Td/55wT096Al1/v67lR2ywuylWH
+5o5S/S0TyxbtFofOTKleImet3XJf1py58dcXHM5Eab6DewhryHIcXkutzL/1U/+z
+p1JtLQkNXcm7ay7mxAxmHNui5o4tBdUbulec7ZzFdetX0K6KtNm3wM/DVlv7msUL
+IwP/AA==
+=F4tJ
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/johntdyer
+
+==================================================================
