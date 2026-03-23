@@ -16,6 +16,7 @@ jobs:
 
       - name: Read Hugo version
         id: hugo-version
+        working-directory: johntdyer.com
         run: echo "version=$(cat .hugo-version)" >> "$GITHUB_OUTPUT"
 
       - name: Setup Hugo
@@ -25,6 +26,7 @@ jobs:
           extended: true
 
       - name: Build
+        working-directory: johntdyer.com
         run: hugo --minify
 
       - name: Deploy to GitHub Pages
@@ -32,4 +34,4 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
+          publish_dir: ./johntdyer.com/public
