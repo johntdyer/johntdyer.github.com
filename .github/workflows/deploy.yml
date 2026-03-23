@@ -18,20 +18,20 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '25'
+          node-version: '22'
           cache: npm
-          cache-dependency-path: hexo/package-lock.json
+          cache-dependency-path: astro/package-lock.json
 
       - name: Install dependencies
-        working-directory: hexo
+        working-directory: astro
         run: npm ci
 
       - name: Build
-        working-directory: hexo
-        run: npx hexo generate
+        working-directory: astro
+        run: npm run build
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: hexo/public
+          publish_dir: astro/dist
