@@ -2,9 +2,64 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/categories/</loc>
-  </url><url>
     <loc>http://localhost:1313/</loc>
+    <lastmod>2025-05-14T11:19:31-04:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/</loc>
+    <lastmod>2025-05-14T11:19:31-04:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/ipsec-vpn-for-connection-multiple-aws-vpcs/</loc>
+    <lastmod>2025-05-14T11:17:47-04:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/ohai-vagrant-and-eth1/</loc>
+    <lastmod>2025-05-14T11:17:49-04:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/showing-restarts-in-graphite/</loc>
+    <lastmod>2025-05-14T11:17:47-04:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/creating-a-release-rpm/</loc>
+    <lastmod>2025-05-14T11:16:57-04:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/dynamic-access-control-allow-origin-header-in-haproxy/</loc>
+    <lastmod>2025-05-14T11:17:47-04:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/get-a-quick-list-of-all-aws-instances/</loc>
+    <lastmod>2025-05-14T11:16:57-04:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/using-sox-to-batch-convert-audio-files/</loc>
+    <lastmod>2025-05-14T11:19:31-04:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/keep-route53-healthcheck-source-ips-up-to-date/</loc>
+    <lastmod>2025-05-14T11:16:57-04:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/using-nagios-to-monitor-tropo/</loc>
+    <lastmod>2025-05-14T11:16:57-04:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/installing-asterisk-10-dot-3-on-osx-lion/</loc>
+    <lastmod>2025-05-14T11:16:57-04:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/api-for-aws-pricing/</loc>
+    <lastmod>2025-05-14T11:16:57-04:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/tinytds-and-osx-10-dot-7/</loc>
+    <lastmod>2025-05-14T11:16:57-04:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/installing-elb-command-line-tools-on-osx-slash-linux/</loc>
+    <lastmod>2025-05-14T11:17:47-04:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/print-letters-up-to-n-in-ruby/</loc>
+    <lastmod>2025-05-14T11:17:47-04:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/upgrade-chef-server-to-0-dot-10-dot-8/</loc>
+    <lastmod>2025-05-14T11:16:57-04:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/dynamic-templates-based-on-search-results/</loc>
+    <lastmod>2025-05-14T11:18:11-04:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/query-chefs-restapi-using-spice/</loc>
+    <lastmod>2025-05-14T11:17:47-04:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/</loc>
   </url>

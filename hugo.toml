@@ -1,4 +1,23 @@
-baseURL = 'https://example.org/'
-languageCode = 'en-us'
-title = 'My New Hugo Site'
-theme = 'ananke'
+
+baseURL = "http://johntdyer.com"
+
+# Change the default theme to be use when building the site with Hugo
+theme = "toha"
+
+# website title
+title = "My New Hugo Site"
+
+# language code ["en", "zh-CN", "fr", "pl", ...]
+languageCode = "en"
+# language name ["English", "简体中文", "Français", "Polski", ...]
+languageName = "English"
+
+
+[services]
+  [services.disqus]
+    shortname =  "johndyergeorgia"
+
+
+# [module]
+#   [imports]
+#     path= "github.com/hugo-toha/toha/v4"
