@@ -4,51 +4,43 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-This is a Hugo static site for johntdyer.com. The site is currently in transition — there are legacy Jekyll posts in `_posts/` and the active Hugo content lives in `content/posts/`. The configured theme in `hugo.toml` is `toha`, but that theme is not present; the available themes are `ananke`, `cactus`, `github-style`, `LoveIt`, and `poison`.
+This is an [Astro](https://astro.build/) static site for johntdyer.com using the [ataraxia](https://github.com/inakicalvo/astro-ataraxia-theme) theme. All site code lives under `astro/`.
 
 ## Common Commands
 
 ```bash
-# Start local dev server (includes drafts)
-hugo server -D
+cd astro
+
+# Start local dev server
+npm run dev
 
 # Build the site
-hugo
+npm run build
 
-# Create a new post
-hugo new posts/my-post-title.md
-
-# Build with a specific theme override
-hugo server -D --theme ananke
+# Preview the production build locally
+npm run preview
 ```
-
-## Site Configuration
-
-- Config file: `hugo.toml` — sets `baseURL`, `theme`, `title`, `languageCode`, and Disqus integration
-- Go module: `go.mod` declares this as `github.com/johntdyer/hugo-toha.github.io`
-- Output goes to `public/` (already contains a previously built site)
 
 ## Content
 
-- `content/posts/` — Hugo Markdown posts (TOML front matter using `+++` delimiters)
-- `_posts/` — Legacy Jekyll posts (not used by Hugo; these may be candidates for migration)
-- `archetypes/default.md` — Template for new posts; new posts default to `draft = true`
+Posts live in `astro/src/content/blog/` as `.md` or `.mdx` files. The schema (defined in `astro/src/content.config.ts`) requires:
 
-## Themes
-
-Themes are managed as git submodules (see `.gitmodules`). Currently registered submodules:
-- `themes/ananke` — gohugo-theme-ananke (from theNewDynamic)
-- `themes/github-style` — MeiK2333/github-style
-- `themes/LoveIt` — dillonzq/LoveIt
-
-Additional non-submodule themes present locally: `themes/cactus`, `themes/poison`.
-
-To initialize submodules after cloning:
-```bash
-git submodule update --init --recursive
+```yaml
+---
+title: "Post Title"
+description: "One-line summary"
+pubDate: 'Jan 01 2025'
+tags: ['tag']          # at least one required
+heroImage: '../../assets/image.jpg'   # optional
+heroImageAlt: 'Alt text'              # optional
+---
 ```
 
-## Branch Structure
+## CI/CD
 
-- `master` — main branch
-- `hugo` — current working branch (active Hugo migration work)
+Two GitHub Actions workflows in `.github/workflows/`:
+
+- **`validate.yml`** — runs on every PR targeting `master`; runs `npm run build` to catch errors. Set as a required status check to block bad merges.
+- **`deploy.yml`** — runs on push to `master`; builds and pushes `astro/dist` to the `gh-pages` branch via `peaceiris/actions-gh-pages`.
+
+GitHub Pages must be configured to serve from the `gh-pages` branch. Add `astro/public/CNAME` with `johntdyer.com` to preserve the custom domain across deploys.
