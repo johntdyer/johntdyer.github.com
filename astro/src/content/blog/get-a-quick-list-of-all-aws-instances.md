@@ -1,7 +1,7 @@
 ---
 title: "Get a quick list of all AWS instances using JQ and AWS Cli"
 description: "Today I needed to get a quick list of all my AWS instances, and rather then try to copy and paste from the aweful AWS web UI I figured I would go the manly rout"
-pubDate: 'Aug 19, 2012'
+pubDate: 'Mar 25, 2015'
 tags: ['general']
 ---
 Today I needed to get a quick list of all my AWS instances, and rather then try to copy and paste from the aweful AWS web UI I figured I would go the manly route and do this using the CLI tools.

@@ -1,7 +1,7 @@
 ---
 title: "Keep Route53 Health check source IP's up to date"
 description: "We wanted to add Route53 health checks for some of our DNS end points but the list of origin IP's for these checks is not guaranteed.  This being the case we pu"
-pubDate: 'Aug 18, 2012'
+pubDate: 'Aug 16, 2015'
 tags: ['general']
 ---
 We wanted to add Route53 health checks for some of our DNS end points but the list of origin IP's for these checks is not guaranteed.  This being the case we put together a small script to keep them up to date.

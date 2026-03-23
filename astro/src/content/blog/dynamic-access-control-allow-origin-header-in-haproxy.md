@@ -1,7 +1,7 @@
 ---
 title: "Dynamic Access Control Allow Origin header in HAProxy"
 description: "In order to support Preflight CORS request in HAProxy you need to return the correct Access-Control-Allow-Origin header in the response.  This should contain th"
-pubDate: 'Aug 19, 2012'
+pubDate: 'Aug 15, 2015'
 tags: ['general']
 ---
 In order to support Preflight CORS request in HAProxy you need to return the correct `Access-Control-Allow-Origin` header in the response.  This should contain the domain in the Origin header from the request.  We had a backend service which did not support Preflight CORS requests and we decided to try and handle this in HAProxy.
