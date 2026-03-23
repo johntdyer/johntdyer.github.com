@@ -1,0 +1,155 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-bvzihdzo> <head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="sitemap" href="/sitemap-index.xml"><link rel="alternate" type="application/rss+xml" title="Ataraxia Astro Theme" href="https://johntdyer.com/rss.xml"><meta name="generator" content="Astro v6.0.4"><!-- Fonts --><style>@font-face{font-family:"Atkinson Hyperlegible Next-9d7f68569dad5360";src:url("/_astro/fonts/79c0b6ca5d0b1c69.ttf") format("truetype");font-display:swap;font-weight:100 900;font-style:normal;}@font-face{font-family:"Atkinson Hyperlegible Next-9d7f68569dad5360";src:url("/_astro/fonts/f85af05fb1061ee5.ttf") format("truetype");font-display:swap;font-weight:100 900;font-style:italic;}@font-face{font-family:"Atkinson Hyperlegible Next-9d7f68569dad5360 fallback: Arial";src:local("Arial");font-display:swap;font-weight:100 900;font-style:normal;size-adjust:99.5961%;ascent-override:98.7991%;descent-override:31.7282%;line-gap-override:0%;}@font-face{font-family:"Atkinson Hyperlegible Next-9d7f68569dad5360 fallback: Arial";src:local("Arial");font-display:swap;font-weight:100 900;font-style:italic;size-adjust:99.5961%;ascent-override:98.7991%;descent-override:31.7282%;line-gap-override:0%;}:root{--font-atkinson:"Atkinson Hyperlegible Next-9d7f68569dad5360","Atkinson Hyperlegible Next-9d7f68569dad5360 fallback: Arial",sans-serif;}</style><link rel="preload" href="/_astro/fonts/79c0b6ca5d0b1c69.ttf" as="font" type="font/ttf" crossorigin><link rel="preload" href="/_astro/fonts/f85af05fb1061ee5.ttf" as="font" type="font/ttf" crossorigin><style>@font-face{font-family:"Atkinson Hyperlegible Mono-dd8f14d719b163db";src:url("/_astro/fonts/fbd15c2c3fa1bd2b.ttf") format("truetype");font-display:swap;font-weight:100 900;font-style:normal;}@font-face{font-family:"Atkinson Hyperlegible Mono-dd8f14d719b163db fallback: Arial";src:local("Arial");font-display:swap;font-weight:100 900;font-style:normal;size-adjust:141.7674%;ascent-override:69.4095%;descent-override:22.29%;line-gap-override:0%;}:root{--font-atkinson-mono:"Atkinson Hyperlegible Mono-dd8f14d719b163db","Atkinson Hyperlegible Mono-dd8f14d719b163db fallback: Arial",sans-serif;}</style><!-- Canonical URL --><link rel="canonical" href="https://johntdyer.com/blog/upgrade-chef-server-to-0-dot-10-dot-8/"><!-- Primary Meta Tags --><title>Upgrade Chef server to 0.10.8</title><meta name="title" content="Upgrade Chef server to 0.10.8"><meta name="description" content="Upgrading to Chef Server ( 0.10.8 ) is dead simple, takes probably 30 seconds."><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://johntdyer.com/blog/upgrade-chef-server-to-0-dot-10-dot-8/"><meta property="og:title" content="Upgrade Chef server to 0.10.8"><meta property="og:description" content="Upgrading to Chef Server ( 0.10.8 ) is dead simple, takes probably 30 seconds."><meta property="og:image" content="https://johntdyer.com/_astro/Greek_philosopher_busts.D9szoNne.jpg"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://johntdyer.com/blog/upgrade-chef-server-to-0-dot-10-dot-8/"><meta property="twitter:title" content="Upgrade Chef server to 0.10.8"><meta property="twitter:description" content="Upgrading to Chef Server ( 0.10.8 ) is dead simple, takes probably 30 seconds."><meta property="twitter:image" content="https://johntdyer.com/_astro/Greek_philosopher_busts.D9szoNne.jpg"><!-- Theme initialization - runs immediately to prevent flash --><script>
+	(function() {
+		// Get theme preference immediately
+		const stored = localStorage.getItem('theme');
+		let theme;
+		
+		if (stored) {
+			theme = stored;
+		} else {
+			// First time visit - use system preference
+			theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+		}
+		
+		// Apply theme immediately to prevent flash
+		document.documentElement.setAttribute('data-theme', theme);
+	})();
+</script><link rel="stylesheet" href="/_astro/Header.CjoHyNeO.css">
+<style>nav[data-astro-cid-qaanghzh]{margin-bottom:2rem}.breadcrumb[data-astro-cid-qaanghzh]{display:flex;flex-wrap:wrap;list-style:none;padding:0;margin:0;font-size:.875rem;color:rgb(var(--gray))}.breadcrumb[data-astro-cid-qaanghzh] li[data-astro-cid-qaanghzh]{display:flex;align-items:center}.breadcrumb[data-astro-cid-qaanghzh] li[data-astro-cid-qaanghzh]:not(:last-child):after{content:"/";margin:0 .5rem;color:rgb(var(--gray))}.breadcrumb[data-astro-cid-qaanghzh] a[data-astro-cid-qaanghzh]{color:var(--accent);text-decoration:none;transition:opacity .2s ease}.breadcrumb[data-astro-cid-qaanghzh] a[data-astro-cid-qaanghzh]:hover{opacity:.8;text-decoration:underline}.breadcrumb[data-astro-cid-qaanghzh] span[data-astro-cid-qaanghzh][aria-current=page]{color:rgb(var(--gray-dark));font-weight:500}@media(max-width:720px){.breadcrumb[data-astro-cid-qaanghzh]{font-size:.8rem}.breadcrumb[data-astro-cid-qaanghzh] li[data-astro-cid-qaanghzh]:not(:last-child):after{margin:0 .375rem}}
+:where([data-astro-image]){height:auto}:where([data-astro-image=full-width]){width:100%}:where([data-astro-image=constrained]){max-width:100%}[data-astro-image-fit=fill]{object-fit:fill}[data-astro-image-fit=contain]{object-fit:contain}[data-astro-image-fit=cover]{object-fit:cover}[data-astro-image-fit=scale-down]{object-fit:scale-down}
+.tag-list[data-astro-cid-lga65v7i]{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;margin:.5rem 0}.tag-label[data-astro-cid-lga65v7i]{font-size:.875rem;font-weight:600;color:rgb(var(--gray));margin-right:.25rem}.tags[data-astro-cid-lga65v7i]{display:flex;flex-wrap:wrap;gap:.5rem;list-style:none;margin:0;padding:0}.tag[data-astro-cid-lga65v7i]{margin:0}.tag-link[data-astro-cid-lga65v7i]{display:inline-block;padding:.25rem .75rem;background:rgb(var(--gray-light));color:rgb(var(--gray-dark));text-decoration:none;border-radius:9999px;font-size:.875rem;font-weight:500;transition:all .2s ease;border:1px solid transparent}.tag-link[data-astro-cid-lga65v7i]:hover{background:var(--accent);color:#fff;transform:translateY(-1px);box-shadow:0 2px 8px #00000026}.tag-link[data-astro-cid-lga65v7i]:focus{outline:2px solid var(--accent);outline-offset:2px}.tag-more[data-astro-cid-lga65v7i]{display:inline-block;padding:.25rem .75rem;background:rgba(var(--gray),10%);color:rgb(var(--gray));border-radius:9999px;font-size:.875rem;font-style:italic}[data-theme=dark] .tag-link[data-astro-cid-lga65v7i]{background:rgb(var(--gray-light));color:rgb(var(--gray-dark))}[data-theme=dark] .tag-link[data-astro-cid-lga65v7i]:hover{background:var(--accent);color:var(--accent-dark);box-shadow:0 2px 8px #0000004d}@media(max-width:720px){.tag-list[data-astro-cid-lga65v7i],.tags[data-astro-cid-lga65v7i]{gap:.375rem}.tag-link[data-astro-cid-lga65v7i]{padding:.2rem .6rem;font-size:.8rem}}
+main[data-astro-cid-bvzihdzo]{width:calc(100% - 2em);max-width:100%;margin:0}.hero-image[data-astro-cid-bvzihdzo]{width:100%}.hero-image[data-astro-cid-bvzihdzo] img[data-astro-cid-bvzihdzo]{display:block;margin:0 auto;border-radius:12px;box-shadow:var(--box-shadow)}.prose[data-astro-cid-bvzihdzo]{width:720px;max-width:calc(100% - 2em);margin:auto;padding:1em;color:rgb(var(--gray-dark))}.title[data-astro-cid-bvzihdzo]{margin-bottom:1em;padding:1em 0;text-align:center;line-height:1}.title[data-astro-cid-bvzihdzo] h1[data-astro-cid-bvzihdzo]{margin:0 0 .5em}.date[data-astro-cid-bvzihdzo]{margin-bottom:.5em;color:rgb(var(--gray))}.last-updated-on[data-astro-cid-bvzihdzo]{font-style:italic}.date[data-astro-cid-bvzihdzo] svg[data-astro-cid-bvzihdzo]{vertical-align:text-top;margin-right:.1rem;color:var(--accent)}
+</style></head> <body data-astro-cid-bvzihdzo> <header data-astro-cid-3ef6ksr2> <a href="#main" class="skip-link" data-astro-cid-3ef6ksr2>Skip to main content</a> <nav data-astro-cid-3ef6ksr2> <div class="site-title" data-astro-cid-3ef6ksr2><a href="/" data-astro-cid-3ef6ksr2>Ataraxia Astro Theme</a></div> <div class="nav-container" data-astro-cid-3ef6ksr2> <div class="internal-links" id="nav-menu" data-astro-cid-3ef6ksr2> <a href="/" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> Home </a> <a href="/blog" class="active" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> Blog </a> <a href="/about" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> About </a> <div class="mobile-theme-toggle" data-astro-cid-3ef6ksr2> <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" data-astro-cid-x3pjskd3> <svg width="1em" height="1em" data-astro-cid-x3pjskd3="true" class="sun-icon" data-icon="mdi:weather-sunny">   <symbol id="ai:mdi:weather-sunny" viewBox="0 0 24 24"><path fill="currentColor" d="M12 7a5 5 0 0 1 5 5a5 5 0 0 1-5 5a5 5 0 0 1-5-5a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3m0-7l2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10l1.76-3.77a7.13 7.13 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10l-4.14.36c.59-.51 1.12-1.14 1.54-1.86c.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44c.82 0 1.63-.17 2.37-.44z"/></symbol><use href="#ai:mdi:weather-sunny"></use>  </svg> <svg width="1em" height="1em" data-astro-cid-x3pjskd3="true" class="moon-icon" data-icon="mdi:weather-night">   <symbol id="ai:mdi:weather-night" viewBox="0 0 24 24"><path fill="currentColor" d="m17.75 4.09l-2.53 1.94l.91 3.06l-2.63-1.81l-2.63 1.81l.91-3.06l-2.53-1.94L12.44 4l1.06-3l1.06 3zm3.5 6.91l-1.64 1.25l.59 1.98l-1.7-1.17l-1.7 1.17l.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85c-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14c.4-.4.82-.76 1.27-1.08c.75-.53 1.93.36 1.85 1.19c-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82c-2.81 3.14-2.7 7.96.31 10.98c3.02 3.01 7.84 3.12 10.98.31"/></symbol><use href="#ai:mdi:weather-night"></use>  </svg> </button> <script>
+	// Theme toggle function - initialization is handled in BaseHead.astro
+	window.toggleTheme = function() {
+		const html = document.documentElement;
+		const currentTheme = html.getAttribute('data-theme');
+		const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+		
+		html.setAttribute('data-theme', newTheme);
+		localStorage.setItem('theme', newTheme);
+		
+		// Update aria-label for accessibility
+		const toggleButtons = document.querySelectorAll('.theme-toggle');
+		toggleButtons.forEach(button => {
+			button.setAttribute('aria-label', newTheme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+		});
+	};
+
+	// Set initial aria-labels when page loads
+	document.addEventListener('DOMContentLoaded', function() {
+		const currentTheme = document.documentElement.getAttribute('data-theme');
+		const toggleButtons = document.querySelectorAll('.theme-toggle');
+		toggleButtons.forEach(button => {
+			button.setAttribute('aria-label', currentTheme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+		});
+
+		// Listen for system theme changes (only if user hasn't set a preference)
+		window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+			if (!localStorage.getItem('theme')) {
+				const newTheme = e.matches ? 'dark' : 'light';
+				document.documentElement.setAttribute('data-theme', newTheme);
+				
+				// Update aria-labels
+				toggleButtons.forEach(button => {
+					button.setAttribute('aria-label', newTheme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+				});
+			}
+		});
+	});
+</script> </div> </div> <div class="desktop-theme-toggle" data-astro-cid-3ef6ksr2> <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" data-astro-cid-x3pjskd3> <svg width="1em" height="1em" viewBox="0 0 24 24" data-astro-cid-x3pjskd3="true" class="sun-icon" data-icon="mdi:weather-sunny">   <use href="#ai:mdi:weather-sunny"></use>  </svg> <svg width="1em" height="1em" viewBox="0 0 24 24" data-astro-cid-x3pjskd3="true" class="moon-icon" data-icon="mdi:weather-night">   <use href="#ai:mdi:weather-night"></use>  </svg> </button> <script>
+	// Theme toggle function - initialization is handled in BaseHead.astro
+	window.toggleTheme = function() {
+		const html = document.documentElement;
+		const currentTheme = html.getAttribute('data-theme');
+		const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+		
+		html.setAttribute('data-theme', newTheme);
+		localStorage.setItem('theme', newTheme);
+		
+		// Update aria-label for accessibility
+		const toggleButtons = document.querySelectorAll('.theme-toggle');
+		toggleButtons.forEach(button => {
+			button.setAttribute('aria-label', newTheme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+		});
+	};
+
+	// Set initial aria-labels when page loads
+	document.addEventListener('DOMContentLoaded', function() {
+		const currentTheme = document.documentElement.getAttribute('data-theme');
+		const toggleButtons = document.querySelectorAll('.theme-toggle');
+		toggleButtons.forEach(button => {
+			button.setAttribute('aria-label', currentTheme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+		});
+
+		// Listen for system theme changes (only if user hasn't set a preference)
+		window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+			if (!localStorage.getItem('theme')) {
+				const newTheme = e.matches ? 'dark' : 'light';
+				document.documentElement.setAttribute('data-theme', newTheme);
+				
+				// Update aria-labels
+				toggleButtons.forEach(button => {
+					button.setAttribute('aria-label', newTheme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+				});
+			}
+		});
+	});
+</script> </div> </div> <button class="hamburger" id="hamburger-menu" aria-label="Open navigation menu" aria-controls="nav-menu" aria-expanded="false" data-astro-cid-3ef6ksr2> <span data-astro-cid-3ef6ksr2></span> <span data-astro-cid-3ef6ksr2></span> <span data-astro-cid-3ef6ksr2></span> </button> </nav> </header> <script>
+	(function () {
+		const hamburger = document.getElementById('hamburger-menu');
+		const navMenu = document.getElementById('nav-menu');
+		if (!hamburger || !navMenu) return;
+
+		function openMenu() {
+			hamburger.classList.add('open');
+			hamburger.setAttribute('aria-expanded', 'true');
+			navMenu.classList.add('open');
+		}
+
+		function closeMenu() {
+			hamburger.classList.remove('open');
+			hamburger.setAttribute('aria-expanded', 'false');
+			navMenu.classList.remove('open');
+		}
+
+		function toggleMenu() {
+			if (navMenu.classList.contains('open')) closeMenu(); else openMenu();
+		}
+
+		hamburger.addEventListener('click', (e) => {
+			e.stopPropagation();
+			toggleMenu();
+		});
+
+		// Close when a navigation link is clicked
+		navMenu.addEventListener('click', (e) => {
+			const target = e.target;
+			if (target && (target.tagName === 'A' || target.closest('a'))) {
+				closeMenu();
+			}
+		});
+
+		// Close on outside click
+		document.addEventListener('click', (e) => {
+			const target = e.target;
+			if (!navMenu.contains(target) && !hamburger.contains(target)) {
+				closeMenu();
+			}
+		});
+
+		// Close on Escape key
+		document.addEventListener('keydown', (e) => {
+			if (e.key === 'Escape') closeMenu();
+		});
+	})();
+</script> <main id="main" data-astro-cid-bvzihdzo> <article data-astro-cid-bvzihdzo> <div class="hero-image" data-astro-cid-bvzihdzo>  </div> <div class="prose" data-astro-cid-bvzihdzo> <nav aria-label="Breadcrumb" data-astro-cid-qaanghzh> <ol class="breadcrumb" data-astro-cid-qaanghzh> <li data-astro-cid-qaanghzh> <a href="/" data-astro-cid-qaanghzh>Home</a> </li><li data-astro-cid-qaanghzh> <a href="/blog" data-astro-cid-qaanghzh>Blog</a> </li><li data-astro-cid-qaanghzh> <span aria-current="page" data-astro-cid-qaanghzh>Upgrade Chef server to 0.10.8</span> </li> </ol> </nav> <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://johntdyer.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://johntdyer.com/blog"},{"@type":"ListItem","position":3,"name":"Upgrade Chef server to 0.10.8","item":"https://johntdyer.com/blog/upgrade-chef-server-to-0-dot-10-dot-8/"}]}</script> <div class="title" data-astro-cid-bvzihdzo> <div class="date" data-astro-cid-bvzihdzo> <svg width="20" height="20" aria-hidden="true" data-astro-cid-bvzihdzo="true" data-icon="mdi:calendar">   <symbol id="ai:mdi:calendar" viewBox="0 0 24 24"><path fill="currentColor" d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></symbol><use href="#ai:mdi:calendar"></use>  </svg> <time datetime="2011-12-18T00:00:00.000Z"> Dec 18, 2011 </time>  - <svg width="20" height="20" aria-hidden="true" data-astro-cid-bvzihdzo="true" data-icon="mdi:account">   <symbol id="ai:mdi:account" viewBox="0 0 24 24"><path fill="currentColor" d="M12 4a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4"/></symbol><use href="#ai:mdi:account"></use>  </svg>Your Name Here </div> <h1 data-astro-cid-bvzihdzo>Upgrade Chef server to 0.10.8</h1> </div>  <p>Upgrading to Chef Server ( 0.10.8 ) is dead simple, takes probably 30 seconds.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F97583">for</span><span style="color:#E1E4E8"> s </span><span style="color:#F97583">in</span><span style="color:#9ECBFF"> server</span><span style="color:#9ECBFF"> server-webui</span><span style="color:#9ECBFF"> solr</span><span style="color:#9ECBFF"> expander</span><span style="color:#E1E4E8">; </span><span style="color:#F97583">do</span><span style="color:#B392F0"> sudo</span><span style="color:#9ECBFF"> /etc/init.d/chef-</span><span style="color:#E1E4E8">${s} </span><span style="color:#9ECBFF">stop</span><span style="color:#E1E4E8">; </span><span style="color:#F97583">done</span></span>
+<span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> gem</span><span style="color:#9ECBFF"> update</span><span style="color:#9ECBFF"> chef</span><span style="color:#9ECBFF"> chef-server</span><span style="color:#79B8FF"> --no-ri</span><span style="color:#79B8FF"> --no-rdoc</span></span>
+<span class="line"><span style="color:#F97583">for</span><span style="color:#E1E4E8"> s </span><span style="color:#F97583">in</span><span style="color:#9ECBFF"> server</span><span style="color:#9ECBFF"> server-webui</span><span style="color:#9ECBFF"> solr</span><span style="color:#9ECBFF"> expander</span><span style="color:#E1E4E8">; </span><span style="color:#F97583">do</span><span style="color:#B392F0"> sudo</span><span style="color:#9ECBFF"> /etc/init.d/chef-</span><span style="color:#E1E4E8">${s} </span><span style="color:#9ECBFF">start</span><span style="color:#E1E4E8">; </span><span style="color:#F97583">done</span></span></code></pre>
+<p>If you want you can backup the server first using Seth’s backup script ( here ). Installing, and running it, is dead simple:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">curl</span><span style="color:#79B8FF"> -O</span><span style="color:#9ECBFF"> https://raw.github.com/jtimberman/knife-scripts/master/chef_server_backup.rb</span></span>
+<span class="line"><span style="color:#B392F0">knife</span><span style="color:#9ECBFF"> exec</span><span style="color:#9ECBFF"> chef_server_backup.rb</span></span></code></pre>
+<p>This will create a backup fo the server in your .chef dir. Enjoy</p>  <hr aria-hidden="true" data-astro-cid-bvzihdzo> <div class="tag-list" data-astro-cid-lga65v7i> <span class="tag-label" data-astro-cid-lga65v7i>Tags:</span> <ul class="tags" data-astro-cid-lga65v7i> <li class="tag" data-astro-cid-lga65v7i> <a href="/tags/general/" class="tag-link" data-astro-cid-lga65v7i> general </a> </li>  </ul> </div> </div> </article> </main> <footer data-astro-cid-sz7xmlte>
+&copy; 2026 Your Name Here. All rights reserved.
+<div class="social-links" data-astro-cid-sz7xmlte> <a href="https://m.webtoo.ls/@astro" target="_blank" rel="noopener noreferrer" aria-label="Follow Astro on Mastodon" data-astro-cid-sz7xmlte> <svg width="36" height="36" aria-hidden="true" data-astro-cid-sz7xmlte="true" data-icon="mdi:mastodon">   <symbol id="ai:mdi:mastodon" viewBox="0 0 24 24"><path fill="currentColor" d="M20.94 14c-.28 1.41-2.44 2.96-4.97 3.26c-1.31.15-2.6.3-3.97.24c-2.25-.11-4-.54-4-.54v.62c.32 2.22 2.22 2.35 4.03 2.42c1.82.05 3.44-.46 3.44-.46l.08 1.65s-1.28.68-3.55.81c-1.25.07-2.81-.03-4.62-.5c-3.92-1.05-4.6-5.24-4.7-9.5l-.01-3.43c0-4.34 2.83-5.61 2.83-5.61C6.95 2.3 9.41 2 11.97 2h.06c2.56 0 5.02.3 6.47.96c0 0 2.83 1.27 2.83 5.61c0 0 .04 3.21-.39 5.43M18 8.91c0-1.08-.3-1.91-.85-2.56c-.56-.63-1.3-.96-2.23-.96c-1.06 0-1.87.41-2.42 1.23l-.5.88l-.5-.88c-.56-.82-1.36-1.23-2.43-1.23c-.92 0-1.66.33-2.23.96C6.29 7 6 7.83 6 8.91v5.26h2.1V9.06c0-1.06.45-1.62 1.36-1.62c1 0 1.5.65 1.5 1.93v2.79h2.07V9.37c0-1.28.5-1.93 1.51-1.93c.9 0 1.35.56 1.35 1.62v5.11H18z"/></symbol><use href="#ai:mdi:mastodon"></use>  </svg> </a> <a href="https://github.com/withastro/astro" target="_blank" rel="noopener noreferrer" aria-label="Go to Astro's GitHub repo" data-astro-cid-sz7xmlte> <svg width="36" height="36" aria-hidden="true" data-astro-cid-sz7xmlte="true" data-icon="simple-icons:github">   <symbol id="ai:simple-icons:github" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12c0 5.303 3.438 9.8 8.205 11.385c.6.113.82-.258.82-.577c0-.285-.01-1.04-.015-2.04c-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729c1.205.084 1.838 1.236 1.838 1.236c1.07 1.835 2.809 1.305 3.495.998c.108-.776.417-1.305.76-1.605c-2.665-.3-5.466-1.332-5.466-5.93c0-1.31.465-2.38 1.235-3.22c-.135-.303-.54-1.523.105-3.176c0 0 1.005-.322 3.3 1.23c.96-.267 1.98-.399 3-.405c1.02.006 2.04.138 3 .405c2.28-1.552 3.285-1.23 3.285-1.23c.645 1.653.24 2.873.12 3.176c.765.84 1.23 1.91 1.23 3.22c0 4.61-2.805 5.625-5.475 5.92c.42.36.81 1.096.81 2.22c0 1.606-.015 2.896-.015 3.286c0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></symbol><use href="#ai:simple-icons:github"></use>  </svg> </a> <a href="https://www.youtube.com/@astro" target="_blank" rel="noopener noreferrer" aria-label="Visit Astro on YouTube" data-astro-cid-sz7xmlte> <svg width="36" height="36" aria-hidden="true" data-astro-cid-sz7xmlte="true" data-icon="mdi:youtube">   <symbol id="ai:mdi:youtube" viewBox="0 0 24 24"><path fill="currentColor" d="m10 15l5.19-3L10 9zm11.56-7.83c.13.47.22 1.1.28 1.9c.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83c-.25.9-.83 1.48-1.73 1.73c-.47.13-1.33.22-2.65.28c-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44c-.9-.25-1.48-.83-1.73-1.73c-.13-.47-.22-1.1-.28-1.9c-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83c.25-.9.83-1.48 1.73-1.73c.47-.13 1.33-.22 2.65-.28c1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44c.9.25 1.48.83 1.73 1.73"/></symbol><use href="#ai:mdi:youtube"></use>  </svg> </a> <a href="https://www.linkedin.com/company/astro" target="_blank" rel="noopener noreferrer" aria-label="Connect with Astro on LinkedIn" data-astro-cid-sz7xmlte> <svg width="36" height="36" aria-hidden="true" data-astro-cid-sz7xmlte="true" data-icon="mdi:linkedin">   <symbol id="ai:mdi:linkedin" viewBox="0 0 24 24"><path fill="currentColor" d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93zM6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37z"/></symbol><use href="#ai:mdi:linkedin"></use>  </svg> </a> <a href="mailto:hello@astro.build" target="_blank" rel="noopener noreferrer" aria-label="Email Astro" data-astro-cid-sz7xmlte> <svg width="36" height="36" aria-hidden="true" data-astro-cid-sz7xmlte="true" data-icon="mdi:email">   <symbol id="ai:mdi:email" viewBox="0 0 24 24"><path fill="currentColor" d="m20 8l-8 5l-8-5V6l8 5l8-5m0-2H4c-1.11 0-2 .89-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2"/></symbol><use href="#ai:mdi:email"></use>  </svg> </a> </div> </footer> </body></html>
