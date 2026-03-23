@@ -1,14 +1,14 @@
----
-layout: post
-title: "Creating a release RPM"
-date: 2012-08-27 23:56
-comments: true
+ +++
+
+title="Creating a release RPM"
+date=2012-08-27T23:56
+
 categories:
----
++++
 
 Here is an example of a release RPM we used for a project
 
-{% highlight bash %}
+{{< highlight bash >}}
 #
 # spec file for VoxeoLabs Yum Repo
 #
@@ -85,4 +85,4 @@ yum clean all
 * Sun Aug 27 2012 John Dyer <jdyer@voxeo.com> 0.0.1
 - Initial release
 
-{% endhighlight %}
+{{< /highlight >}}
