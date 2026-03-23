@@ -4,51 +4,38 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-This is a Hugo static site for johntdyer.com. The site is currently in transition — there are legacy Jekyll posts in `_posts/` and the active Hugo content lives in `content/posts/`. The configured theme in `hugo.toml` is `toha`, but that theme is not present; the available themes are `ananke`, `cactus`, `github-style`, `LoveIt`, and `poison`.
+This is a [Hexo](https://hexo.io/) static site for johntdyer.com using the [hipaper](https://github.com/iTimeTraveler/hexo-theme-hipaper) theme. All site code lives under `hexo/`.
 
 ## Common Commands
 
 ```bash
-# Start local dev server (includes drafts)
-hugo server -D
+cd hexo
+
+# Start local dev server
+npx hexo server
 
 # Build the site
-hugo
+npx hexo generate
+
+# Clean build artifacts
+npx hexo clean
 
 # Create a new post
-hugo new posts/my-post-title.md
-
-# Build with a specific theme override
-hugo server -D --theme ananke
+npx hexo new "Post Title"
 ```
 
-## Site Configuration
+## Structure
 
-- Config file: `hugo.toml` — sets `baseURL`, `theme`, `title`, `languageCode`, and Disqus integration
-- Go module: `go.mod` declares this as `github.com/johntdyer/hugo-toha.github.io`
-- Output goes to `public/` (already contains a previously built site)
+- `hexo/source/_posts/` — Markdown posts with YAML front matter
+- `hexo/themes/hipaper/` — hipaper theme (committed directly, not a submodule)
+- `hexo/_config.yml` — site configuration (title, URL, theme, etc.)
+- `hexo/package.json` — Node dependencies
 
-## Content
+## CI/CD
 
-- `content/posts/` — Hugo Markdown posts (TOML front matter using `+++` delimiters)
-- `_posts/` — Legacy Jekyll posts (not used by Hugo; these may be candidates for migration)
-- `archetypes/default.md` — Template for new posts; new posts default to `draft = true`
+Two GitHub Actions workflows in `.github/workflows/`:
 
-## Themes
+- **`validate.yml`** — runs on every PR targeting `master`; builds the site with `hexo generate --bail` to catch parse errors. Set as a required status check to block bad merges.
+- **`deploy.yml`** — runs on push to `master`; builds and pushes `hexo/public` to the `gh-pages` branch via `peaceiris/actions-gh-pages`.
 
-Themes are managed as git submodules (see `.gitmodules`). Currently registered submodules:
-- `themes/ananke` — gohugo-theme-ananke (from theNewDynamic)
-- `themes/github-style` — MeiK2333/github-style
-- `themes/LoveIt` — dillonzq/LoveIt
-
-Additional non-submodule themes present locally: `themes/cactus`, `themes/poison`.
-
-To initialize submodules after cloning:
-```bash
-git submodule update --init --recursive
-```
-
-## Branch Structure
-
-- `master` — main branch
-- `hugo` — current working branch (active Hugo migration work)
+GitHub Pages must be configured to serve from the `gh-pages` branch. A `hexo/source/CNAME` file with `johntdyer.com` will preserve the custom domain across deploys.

@@ -1,2 +1,4 @@
-_site
-.sass-cache
+hexo/node_modules/
+hexo/public/
+hexo/db.json
+hexo/.deploy_git/
